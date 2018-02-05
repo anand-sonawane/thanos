@@ -51,26 +51,26 @@ def create_model(model_name,training_type,num_classes):
         https://flyyufelix.github.io/2016/10/08/fine-tuning-in-keras-part2.html
         """
 #------------------------------------------------------ResidualOfResidual-----------------------------------------------------------------------------
-elif (model_name.lower() == 'ror'):
-        img_width,img_height = 299,299
-        if(training_type == 'freeze'):
-            model = applications.ror.ResidualOfResidual(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers[:37]:
-            	layer.trainable = False
-            for layer in model.layers[37:]:
-                layer.trainable = True
-        else:
-            model = applications.ror.ResidualOfResidual(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers:
-            	layer.trainable = False
-        top_model = Sequential()
-        top_model.add(Flatten(input_shape=model.output_shape[1:]))
-        top_model.add(Dense(1024, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(512, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(num_classes, activation='softmax'))
-        #Final model
-        model_final = Model(inputs = model.input, outputs = top_model(model.output))
+    elif (model_name.lower() == 'ror'):
+            img_width,img_height = 299,299
+            if(training_type == 'freeze'):
+                model = applications.ror.ResidualOfResidual(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers[:37]:
+                	layer.trainable = False
+                for layer in model.layers[37:]:
+                    layer.trainable = True
+            else:
+                model = applications.ror.ResidualOfResidual(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = False
+            top_model = Sequential()
+            top_model.add(Flatten(input_shape=model.output_shape[1:]))
+            top_model.add(Dense(1024, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(512, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(num_classes, activation='softmax'))
+            #Final model
+            model_final = Model(inputs = model.input, outputs = top_model(model.output))

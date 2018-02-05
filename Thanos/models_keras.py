@@ -78,261 +78,261 @@ def create_model(model_name,training_type,num_classes):
 
 #------------------------------------------------------VGG16-----------------------------------------------------------------------------
 
-elif (model_name.lower() == 'vgg16'):
-        img_width,img_height = 299,299
-        if(training_type == 'freeze'):
-            model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers[:37]:
-            	layer.trainable = False
-            for layer in model.layers[37:]:
-                layer.trainable = True
-        else:
-            model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers:
-            	layer.trainable = False
-        top_model = Sequential()
-        top_model.add(Flatten(input_shape=model.output_shape[1:]))
-        top_model.add(Dense(1024, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(512, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(num_classes, activation='softmax'))
-        #Final model
-        model_final = Model(inputs = model.input, outputs = top_model(model.output))
+    elif (model_name.lower() == 'vgg16'):
+            img_width,img_height = 299,299
+            if(training_type == 'freeze'):
+                model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers[:37]:
+                	layer.trainable = False
+                for layer in model.layers[37:]:
+                    layer.trainable = True
+            else:
+                model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = False
+            top_model = Sequential()
+            top_model.add(Flatten(input_shape=model.output_shape[1:]))
+            top_model.add(Dense(1024, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(512, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(num_classes, activation='softmax'))
+            #Final model
+            model_final = Model(inputs = model.input, outputs = top_model(model.output))
 
 #------------------------------------------------------VGG19-----------------------------------------------------------------------------
 
-elif (model_name.lower() == 'vgg19'):
-        img_width,img_height = 224,224
-        if(training_type == 'freeze'):
-            model = applications.vgg19.VGG19(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers[:37]:
-            	layer.trainable = False
-            for layer in model.layers[37:]:
-                layer.trainable = True
-        else:
-            model = applications.vgg19.VGG19(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers:
-            	layer.trainable = False
-        top_model = Sequential()
-        top_model.add(Flatten(input_shape=model.output_shape[1:]))
-        top_model.add(Dense(1024, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(512, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(num_classes, activation='softmax'))
-        #Final model
-        model_final = Model(inputs = model.input, outputs = top_model(model.output))
+    elif (model_name.lower() == 'vgg19'):
+            img_width,img_height = 224,224
+            if(training_type == 'freeze'):
+                model = applications.vgg19.VGG19(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers[:37]:
+                	layer.trainable = False
+                for layer in model.layers[37:]:
+                    layer.trainable = True
+            else:
+                model = applications.vgg19.VGG19(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = False
+            top_model = Sequential()
+            top_model.add(Flatten(input_shape=model.output_shape[1:]))
+            top_model.add(Dense(1024, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(512, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(num_classes, activation='softmax'))
+            #Final model
+            model_final = Model(inputs = model.input, outputs = top_model(model.output))
 
 #------------------------------------------------------VGG16-----------------------------------------------------------------------------
 
-elif (model_name.lower() == 'vgg16'):
-        img_width,img_height = 224,224
-        if(training_type == 'freeze'):
-            model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers[:37]:
-            	layer.trainable = False
-            for layer in model.layers[37:]:
-                layer.trainable = True
-        else:
-            model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers:
-            	layer.trainable = False
-        top_model = Sequential()
-        top_model.add(Flatten(input_shape=model.output_shape[1:]))
-        top_model.add(Dense(1024, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(512, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(num_classes, activation='softmax'))
-        #Final model
-        model_final = Model(inputs = model.input, outputs = top_model(model.output))
+    elif (model_name.lower() == 'vgg16'):
+            img_width,img_height = 224,224
+            if(training_type == 'freeze'):
+                model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers[:37]:
+                	layer.trainable = False
+                for layer in model.layers[37:]:
+                    layer.trainable = True
+            else:
+                model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = False
+            top_model = Sequential()
+            top_model.add(Flatten(input_shape=model.output_shape[1:]))
+            top_model.add(Dense(1024, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(512, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(num_classes, activation='softmax'))
+            #Final model
+            model_final = Model(inputs = model.input, outputs = top_model(model.output))
 
 #------------------------------------------------------InceptionV3-----------------------------------------------------------------------------
 
-elif (model_name.lower() == 'inceptionv3'):
-        img_width,img_height = 299,299
-        if(training_type == 'freeze'):
-            model = applications.inception_v3.InceptionV3(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers[:37]:
-            	layer.trainable = False
-            for layer in model.layers[37:]:
-                layer.trainable = True
-        else:
-            model = applications.inception_v3.InceptionV3(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers:
-            	layer.trainable = False
-        top_model = Sequential()
-        top_model.add(Flatten(input_shape=model.output_shape[1:]))
-        top_model.add(Dense(1024, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(512, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(num_classes, activation='softmax'))
-        #Final model
-        model_final = Model(inputs = model.input, outputs = top_model(model.output))
+    elif (model_name.lower() == 'inceptionv3'):
+            img_width,img_height = 299,299
+            if(training_type == 'freeze'):
+                model = applications.inception_v3.InceptionV3(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers[:37]:
+                	layer.trainable = False
+                for layer in model.layers[37:]:
+                    layer.trainable = True
+            else:
+                model = applications.inception_v3.InceptionV3(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = False
+            top_model = Sequential()
+            top_model.add(Flatten(input_shape=model.output_shape[1:]))
+            top_model.add(Dense(1024, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(512, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(num_classes, activation='softmax'))
+            #Final model
+            model_final = Model(inputs = model.input, outputs = top_model(model.output))
 
 #------------------------------------------------------InceptionResNetV2-----------------------------------------------------------------------------
 
-elif (model_name.lower() == 'inceptionresnetv2'):
-        img_width,img_height = 299,299
-        if(training_type == 'freeze'):
-            model = applications.inception_resnet_v2.InceptionResNetV2(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers[:37]:
-            	layer.trainable = False
-            for layer in model.layers[37:]:
-                layer.trainable = True
-        else:
-            model = applications.inception_resnet_v2.InceptionResNetV2(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers:
-            	layer.trainable = False
-        top_model = Sequential()
-        top_model.add(Flatten(input_shape=model.output_shape[1:]))
-        top_model.add(Dense(1024, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(512, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(num_classes, activation='softmax'))
-        #Final model
-        model_final = Model(inputs = model.input, outputs = top_model(model.output))
+    elif (model_name.lower() == 'inceptionresnetv2'):
+            img_width,img_height = 299,299
+            if(training_type == 'freeze'):
+                model = applications.inception_resnet_v2.InceptionResNetV2(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers[:37]:
+                	layer.trainable = False
+                for layer in model.layers[37:]:
+                    layer.trainable = True
+            else:
+                model = applications.inception_resnet_v2.InceptionResNetV2(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = False
+            top_model = Sequential()
+            top_model.add(Flatten(input_shape=model.output_shape[1:]))
+            top_model.add(Dense(1024, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(512, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(num_classes, activation='softmax'))
+            #Final model
+            model_final = Model(inputs = model.input, outputs = top_model(model.output))
 
 #------------------------------------------------------NASNetLarge-----------------------------------------------------------------------------
 
-elif (model_name.lower() == 'nasnet'):
-        img_width,img_height = 331,331
-        if(training_type == 'freeze'):
-            model = applications.nasnet.NASNetLarge(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers[:37]:
-            	layer.trainable = False
-            for layer in model.layers[37:]:
-                layer.trainable = True
-        else:
-            model = applications.nasnet.NASNetLarge(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers:
-            	layer.trainable = False
-        top_model = Sequential()
-        top_model.add(Flatten(input_shape=model.output_shape[1:]))
-        top_model.add(Dense(1024, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(512, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(num_classes, activation='softmax'))
-        #Final model
-        model_final = Model(inputs = model.input, outputs = top_model(model.output))
+    elif (model_name.lower() == 'nasnet'):
+            img_width,img_height = 331,331
+            if(training_type == 'freeze'):
+                model = applications.nasnet.NASNetLarge(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers[:37]:
+                	layer.trainable = False
+                for layer in model.layers[37:]:
+                    layer.trainable = True
+            else:
+                model = applications.nasnet.NASNetLarge(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = False
+            top_model = Sequential()
+            top_model.add(Flatten(input_shape=model.output_shape[1:]))
+            top_model.add(Dense(1024, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(512, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(num_classes, activation='softmax'))
+            #Final model
+            model_final = Model(inputs = model.input, outputs = top_model(model.output))
 
 #------------------------------------------------------DenseNet121-----------------------------------------------------------------------------
 
-elif (model_name.lower() == 'densenet121'):
-        img_width,img_height = 224,224
-        if(training_type == 'freeze'):
-            model = applications.densenet.DenseNet121(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers[:37]:
-            	layer.trainable = False
-            for layer in model.layers[37:]:
-                layer.trainable = True
-        else:
-            model = applications.densenet.DenseNet121(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers:
-            	layer.trainable = False
-        top_model = Sequential()
-        top_model.add(Flatten(input_shape=model.output_shape[1:]))
-        top_model.add(Dense(1024, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(512, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(num_classes, activation='softmax'))
-        #Final model
-        model_final = Model(inputs = model.input, outputs = top_model(model.output))
+    elif (model_name.lower() == 'densenet121'):
+            img_width,img_height = 224,224
+            if(training_type == 'freeze'):
+                model = applications.densenet.DenseNet121(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers[:37]:
+                	layer.trainable = False
+                for layer in model.layers[37:]:
+                    layer.trainable = True
+            else:
+                model = applications.densenet.DenseNet121(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = False
+            top_model = Sequential()
+            top_model.add(Flatten(input_shape=model.output_shape[1:]))
+            top_model.add(Dense(1024, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(512, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(num_classes, activation='softmax'))
+            #Final model
+            model_final = Model(inputs = model.input, outputs = top_model(model.output))
 #------------------------------------------------------DenseNet169-----------------------------------------------------------------------------
 
-elif (model_name.lower() == 'densenet169'):
-        img_width,img_height = 224,224
-        if(training_type == 'freeze'):
-            model = applications.densenet.DenseNet169(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers[:37]:
-            	layer.trainable = False
-            for layer in model.layers[37:]:
-                layer.trainable = True
-        else:
-            model = applications.densenet.DenseNet169(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers:
-            	layer.trainable = False
-        top_model = Sequential()
-        top_model.add(Flatten(input_shape=model.output_shape[1:]))
-        top_model.add(Dense(1024, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(512, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(num_classes, activation='softmax'))
-        #Final model
-        model_final = Model(inputs = model.input, outputs = top_model(model.output))
+    elif (model_name.lower() == 'densenet169'):
+            img_width,img_height = 224,224
+            if(training_type == 'freeze'):
+                model = applications.densenet.DenseNet169(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers[:37]:
+                	layer.trainable = False
+                for layer in model.layers[37:]:
+                    layer.trainable = True
+            else:
+                model = applications.densenet.DenseNet169(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = False
+            top_model = Sequential()
+            top_model.add(Flatten(input_shape=model.output_shape[1:]))
+            top_model.add(Dense(1024, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(512, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(num_classes, activation='softmax'))
+            #Final model
+            model_final = Model(inputs = model.input, outputs = top_model(model.output))
 
 #------------------------------------------------------DenseNet201-----------------------------------------------------------------------------
 
-elif (model_name.lower() == 'densenet201'):
-        img_width,img_height = 224,224
-        if(training_type == 'freeze'):
-            model = applications.densenet.DenseNet201(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers[:37]:
-            	layer.trainable = False
-            for layer in model.layers[37:]:
-                layer.trainable = True
-        else:
-            model = applications.densenet.DenseNet201(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers:
-            	layer.trainable = False
-        top_model = Sequential()
-        top_model.add(Flatten(input_shape=model.output_shape[1:]))
-        top_model.add(Dense(1024, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(512, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(num_classes, activation='softmax'))
-        #Final model
-        model_final = Model(inputs = model.input, outputs = top_model(model.output))
+    elif (model_name.lower() == 'densenet201'):
+            img_width,img_height = 224,224
+            if(training_type == 'freeze'):
+                model = applications.densenet.DenseNet201(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers[:37]:
+                	layer.trainable = False
+                for layer in model.layers[37:]:
+                    layer.trainable = True
+            else:
+                model = applications.densenet.DenseNet201(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = False
+            top_model = Sequential()
+            top_model.add(Flatten(input_shape=model.output_shape[1:]))
+            top_model.add(Dense(1024, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(512, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(num_classes, activation='softmax'))
+            #Final model
+            model_final = Model(inputs = model.input, outputs = top_model(model.output))
 
 #------------------------------------------------------MobileNet-----------------------------------------------------------------------------
 
-elif (model_name.lower() == 'densenet201'):
-        img_width,img_height = 224,224
-        if(training_type == 'freeze'):
-            model = applications.mobilenet.MobileNet(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers[:37]:
-            	layer.trainable = False
-            for layer in model.layers[37:]:
-                layer.trainable = True
-        else:
-            model = applications.mobilenet.MobileNet(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
-            model.layers.pop()
-            for layer in model.layers:
-            	layer.trainable = False
-        top_model = Sequential()
-        top_model.add(Flatten(input_shape=model.output_shape[1:]))
-        top_model.add(Dense(1024, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(512, activation='relu'))
-        top_model.add(Dropout(0.5))
-        top_model.add(Dense(num_classes, activation='softmax'))
-        #Final model
-        model_final = Model(inputs = model.input, outputs = top_model(model.output))
+    elif (model_name.lower() == 'densenet201'):
+            img_width,img_height = 224,224
+            if(training_type == 'freeze'):
+                model = applications.mobilenet.MobileNet(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers[:37]:
+                	layer.trainable = False
+                for layer in model.layers[37:]:
+                    layer.trainable = True
+            else:
+                model = applications.mobilenet.MobileNet(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = False
+            top_model = Sequential()
+            top_model.add(Flatten(input_shape=model.output_shape[1:]))
+            top_model.add(Dense(1024, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(512, activation='relu'))
+            top_model.add(Dropout(0.5))
+            top_model.add(Dense(num_classes, activation='softmax'))
+            #Final model
+            model_final = Model(inputs = model.input, outputs = top_model(model.output))
 
     return model_final,img_width,img_height

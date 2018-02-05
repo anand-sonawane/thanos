@@ -17,31 +17,31 @@ from keras.optimizers import Adam
 from keras.callbacks import LearningRateScheduler, EarlyStopping
 from keras.callbacks import ModelCheckpoint
 
-z = glob.glob('/data/Rajneesh/PnGbottleYolo/anand/plant/data/test/*.*')
-test_imgs = []
-names = []
-for fn in z:
-    names.append(fn.split('/')[-1])
-    new_img = Image.open(fn)
-    test_img = ImageOps.fit(new_img, (224, 224), Image.ANTIALIAS).convert('RGB')
-    test_imgs.append(test_img)
+# z = glob.glob('/data/Rajneesh/PnGbottleYolo/anand/plant/data/test/*.*')
+# test_imgs = []
+# names = []
+# for fn in z:
+#     names.append(fn.split('/')[-1])
+#     new_img = Image.open(fn)
+#     test_img = ImageOps.fit(new_img, (224, 224), Image.ANTIALIAS).convert('RGB')
+#     test_imgs.append(test_img)
 
-#load the saved model
-model = load_model('model.h5')
-
-
-timgs = np.array([np.array(im) for im in test_imgs])
-timgs = timgs.astype(float)
-testX = timgs.reshape(timgs.shape[0], 224, 224, 3) / 255
+# #load the saved model
+# model = load_model('model.h5')
 
 
-#predict
+# timgs = np.array([np.array(im) for im in test_imgs])
+# timgs = timgs.astype(float)
+# testX = timgs.reshape(timgs.shape[0], 224, 224, 3) / 255
 
-yhat = model.predict(testX)
-test_y = lb.inverse_transform(yhat)
 
-#create submission file
+# #predict
 
-df = pd.DataFrame(data={'file': names, 'species': test_y})
-df_sort = df.sort_values(by=['file'])
-df_sort.to_csv('results.csv', index=False)
+# yhat = model.predict(testX)
+# test_y = lb.inverse_transform(yhat)
+
+# #create submission file
+
+# df = pd.DataFrame(data={'file': names, 'species': test_y})
+# df_sort = df.sort_values(by=['file'])
+# df_sort.to_csv('results.csv', index=False)

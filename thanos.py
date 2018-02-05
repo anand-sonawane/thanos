@@ -19,11 +19,9 @@ def print_arguments():
     print('data_dir_test : ',args.data_dir_test)
     print('model_name : ',args.model_name)
     print('epochs : ',args.epochs)
-    print('optimizer :',args.optimizer)
     print('batch_size :',args.batch_size)
     print('training_type :',args.training_type)
     print('save_loc : ',args.save_loc)
-    print('use_gpu :',args.use_gpu)
     print('weights : ',args.weights)
 
 
@@ -35,9 +33,9 @@ if __name__ == '__main__':
     required.add_argument('-t', '--task',help = 'Train or Test',required = True)
 
     optional = parser.add_argument_group('optional arguments')
-    optional.add_argument('-dtrain', '--data_dir_train', default="data/training_data", help = 'Path to Training Data')
-    optional.add_argument('-dvalid', '--data_dir_valid', default="data/validation_data", help = 'Path to Validation Data')
-    optional.add_argument('-dtest', '--data_dir_test', default="data/testing_data", help = 'Path to Testing Data')
+    optional.add_argument('-dtrain', '--data_dir_train', default="../data/training_data", help = 'Path to Training Data')
+    optional.add_argument('-dvalid', '--data_dir_valid', default="../data/validation_data", help = 'Path to Validation Data')
+    optional.add_argument('-dtest', '--data_dir_test', default="../data/testing_data", help = 'Path to Testing Data')
     optional.add_argument('-m', '--model_name', default="resnet50",help = 'Pretrianed model name')
     optional.add_argument('-e', '--epochs', default=100, type=int, help = 'Number of epochs')
     optional.add_argument('-b', '--batch_size', default=32, type=int , help = 'Batch-size')
@@ -68,15 +66,8 @@ if __name__ == '__main__':
     keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet','mobilenet']
     keras_contrib_models = ['wideresnet','ror']
     other = ['resnet101','resnet152']
-
-    if args.model_name in keras_models:
-        model,img_width,img_height = models_keras.create_model(model_name,training_type,num_classes)
-    elif args.model_name in keras_contrib_models
-        model,img_width,img_height = models_keras_contrib.create_model(model_name,training_type,num_classes)
-    elif args.model_name in other_models:
-        model,img_width,img_height = models_other.create_model(model_name,training_type,num_classes)
-    else:
-        print("Please input the correct model name")
+#	else:
+#        print("Please input the correct model name")
 
 
     """
@@ -89,7 +80,7 @@ if __name__ == '__main__':
     if args.task.lower() == 'train':
         train.train_model(args.data_dir_train,args.data_dir_valid,args.batch_size,args.epochs,args.model_name,args.training_type,args.save_loc,args.weights)
 
-    elif args.task.lower() == 'test':
+    elif args.task.lower() == 'test': print(test)
 
     else:
         print("Incorrect task")

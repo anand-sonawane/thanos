@@ -11,8 +11,8 @@ from keras.callbacks import ModelCheckpoint, LearningRateScheduler, TensorBoard,
 import os, math
 
 #Import user-defined Libraries
-import models_keras
-import models_keras_contrib
+from Thanos import models_keras
+from Thanos import models_keras_contrib
 
 """ Code for using fraction of the GPU
 import tensorflow as tf
@@ -30,14 +30,14 @@ def train_model(data_dir_train,data_dir_valid,batch_size,epochs,model_name,train
     DATA_VALID = data_dir_valid
     BATCH_SIZE = batch_size
     EPOCH = epochs
-    NUM_CLASSES = len(os.listdir(train_data_dir))
+    num_classes = len(os.listdir(DATA_TRAIN))
 
-    nb_train_samples = sum([len(files) for r, d, files in os.walk(train_data_dir)])
-    nb_validation_samples = sum([len(files) for r, d, files in os.walk(validation_data_dir)])
+    nb_train_samples = sum([len(files) for r, d, files in os.walk(DATA_TRAIN)])
+    nb_validation_samples = sum([len(files) for r, d, files in os.walk(DATA_VALID)])
 
-    print("Training Samples :",nb_tr ain_samples)
+    print("Training Samples :",nb_train_samples)
     print("Validation Samples :",nb_validation_samples)
-    print("Number of Classes :",NUM_CLASSES)
+    print("Number of Classes :",num_classes)
 
     #differenent sources from where the models are being initialized
     keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet','mobilenet']
@@ -45,11 +45,11 @@ def train_model(data_dir_train,data_dir_valid,batch_size,epochs,model_name,train
     other = ['resnet101','resnet152']
 
     if model_name in keras_models:
-        model,img_width,img_height = models_keras.create_model(model_name,training_type,num_classes)
-    elif model_name in keras_contrib_models
-        model,img_width,img_height = models_keras_contrib.create_model(model_name,training_type,num_classes)
+        model_final,img_width,img_height = models_keras.create_model(model_name,training_type,num_classes)
+    elif model_name in keras_contrib_models:
+        model_final,img_width,img_height = models_keras_contrib.create_model(model_name,training_type,num_classes)
     else:
-        model,img_width,img_height = models_other.create_model(model_name,training_type,num_classes)
+        model_final,img_width,img_height = models_other.create_model(model_name,training_type,num_classes)
 
     # Compile the model
     model_final.compile(loss = "categorical_crossentropy", optimizer = optimizers.SGD(lr=0.0001, momentum=0.9), metrics=["accuracy"])
@@ -84,7 +84,7 @@ def train_model(data_dir_train,data_dir_valid,batch_size,epochs,model_name,train
     	drop = 0.1
     	epochs_drop = 20.0
     	lrate = initial_lrate * math.pow(drop, math.floor((1+EPOCH)/epochs_drop))
-    	print "==== Epoch: {0:} and Learning Rate: {1:} ====".format(EPOCH, lrate)
+    	print("==== Epoch: {0:} and Learning Rate: {1:} ====".format(EPOCH, lrate))
     	return lrate
 
     change_lr = LearningRateScheduler(step_decay)
