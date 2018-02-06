@@ -51,6 +51,9 @@ def train_model(data_dir_train,data_dir_valid,batch_size,epochs,model_name,train
     else:
         model_final,img_width,img_height = models_other.create_model(model_name,training_type,num_classes)
 
+    #summary of the model built
+    model.summary()
+
     # Compile the model
     model_final.compile(loss = "categorical_crossentropy", optimizer = optimizers.SGD(lr=0.0001, momentum=0.9), metrics=["accuracy"])
 
@@ -101,3 +104,7 @@ def train_model(data_dir_train,data_dir_valid,batch_size,epochs,model_name,train
 
     # Save the final model on the disk
     model_final.save(model_save)
+
+    return_string = "Model saved at "+ model_save
+
+    return return_string

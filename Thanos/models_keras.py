@@ -2,7 +2,7 @@
 from keras import applications
 from keras.preprocessing.image import ImageDataGenerator
 from keras import optimizers
-from keras.models import Sequential, Model
+from keras.models import Sequential, Model,load_model
 from keras.layers import Dropout, Flatten, Dense, GlobalAveragePooling2D
 from keras import backend as k
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler, TensorBoard, EarlyStopping
@@ -336,3 +336,13 @@ def create_model(model_name,training_type,num_classes):
             model_final = Model(inputs = model.input, outputs = top_model(model.output))
 
     return model_final,img_width,img_height
+
+def test_model(model_name,save_loc,test_generator):
+    #load the saved model
+    model_loc  = save_loc + model_name + ".h5"
+    model = load_model(model_loc)
+
+    #predict
+    logits = model.predict_generator(test_generator,verbose = 1)
+
+    return logits

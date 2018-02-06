@@ -23,6 +23,7 @@ def print_arguments():
     print('training_type :',args.training_type)
     print('save_loc : ',args.save_loc)
     print('weights : ',args.weights)
+    print('results_loc : ',args.results_loc)
 
 
 
@@ -43,6 +44,7 @@ if __name__ == '__main__':
     optional.add_argument('-tt', '--training_type',default = "fine_tune",help = 'Fine tune all network: fine_tune , Freeze the starting layers : freeze')
     optional.add_argument('-s', '--save_loc', default="models/" ,help = 'Save location for the trained models')
     optional.add_argument('-w', '--weights',default = 'imagenet', help='weights imagenet or custom')
+    optional.add_argument('-r', '--results_loc',default = 'results/', help='Save location for the test results')
 
 
 
@@ -78,9 +80,9 @@ if __name__ == '__main__':
     """
 
     if args.task.lower() == 'train':
-        train.train_model(args.data_dir_train,args.data_dir_valid,args.batch_size,args.epochs,args.model_name,args.training_type,args.save_loc,args.weights)
-
-    elif args.task.lower() == 'test': print(test)
-
+        output_string = train.train_model(args.data_dir_train,args.data_dir_valid,args.batch_size,args.epochs,args.model_name,args.training_type,args.save_loc,args.weights)
+    elif args.task.lower() == 'test':
+        output_string = test.test_model(args.data_dir_train,args.data_dir_test,args.batch_size,args.model_name,args.save_loc,args.results_loc)
     else:
-        print("Incorrect task")
+        output_string = "Incorrect Task"
+    print(output_string)

@@ -1,5 +1,6 @@
 # Import keras Libraries
 from keras_contrib import applications
+from keras_contrib import *
 from keras.preprocessing.image import ImageDataGenerator
 from keras import optimizers
 from keras.models import Sequential, Model
@@ -74,3 +75,15 @@ def create_model(model_name,training_type,num_classes):
             top_model.add(Dense(num_classes, activation='softmax'))
             #Final model
             model_final = Model(inputs = model.input, outputs = top_model(model.output))
+
+    return model_final,img_width,img_height
+
+def test_model(model_name,save_loc,test_generator):
+        #load the saved model
+        model_loc  = save_loc + model_name + ".h5"
+        model = load_model(model_loc)
+
+        #predict
+        logits = model.predict_generator(test_generator,verbose = 1)
+
+        return logits

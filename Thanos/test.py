@@ -17,6 +17,45 @@ from keras.optimizers import Adam
 from keras.callbacks import LearningRateScheduler, EarlyStopping
 from keras.callbacks import ModelCheckpoint
 
+def test_model(data_dir_train,data_dir_test,batch_size,model_name,save_loc,results_loc):
+
+    DATA_TRAIN = data_dir_train
+    DATA_TEST = data_dir_test
+    BATCH_SIZE = batch_size
+    num_classes = len(os.listdir(DATA_TRAIN))
+
+    nb_test_samples = sum([len(files) for r, d, files in os.walk(DATA_TEST)])
+
+    print("Test Samples :",nb_test_samples)
+    print("Number of Classes :",num_classes)
+
+    #differenent sources from where the models are being initialized
+    keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet','mobilenet']
+    keras_contrib_models = ['wideresnet','ror']
+    other = ['resnet101','resnet152']
+
+    test_datagen = ImageDataGenerator(
+    	rescale = 1./255)
+
+    test_generator = test_datagen.flow_from_directory(
+    	DATA_TEST,
+    	target_size = (img_height, img_width),
+    	class_mode = "categorical")
+
+    if model_name in keras_models:
+        logits = models_keras.test_model(model_name,save_loc,test_generator)
+    elif model_name in keras_contrib_models:
+        logits = models_keras_contrib.test_model(model_name,save_loc,test_generator)
+    else:
+        logits = models_other.test_model(model_name,save_loc,test_generator)
+
+    logits_pd = pd.DataFrame(logits)
+    save_results = results_loc + model_name + "_results.csv"
+    logits_pd.to_csv(save_results,index=False)
+
+    return_string = "Result saved at : " + save_results
+    return return_string
+
 # z = glob.glob('/data/Rajneesh/PnGbottleYolo/anand/plant/data/test/*.*')
 # test_imgs = []
 # names = []
