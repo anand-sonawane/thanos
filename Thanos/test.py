@@ -13,9 +13,14 @@ from sklearn.preprocessing import LabelBinarizer
 
 from keras.layers import Dropout, Input, Dense, Activation,GlobalMaxPooling2D, BatchNormalization, Flatten, Conv2D, MaxPooling2D
 from keras.models import Model, load_model
+from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import Adam
 from keras.callbacks import LearningRateScheduler, EarlyStopping
 from keras.callbacks import ModelCheckpoint
+
+#Import user-defined Libraries
+from Thanos import models_keras
+from Thanos import models_keras_contrib
 
 def test_model(data_dir_train,data_dir_test,batch_size,model_name,save_loc,results_loc):
 
@@ -30,9 +35,21 @@ def test_model(data_dir_train,data_dir_test,batch_size,model_name,save_loc,resul
     print("Number of Classes :",num_classes)
 
     #differenent sources from where the models are being initialized
-    keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet','mobilenet']
+    keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet121','densenet169','densenet201','mobilenet']
     keras_contrib_models = ['wideresnet','ror']
     other = ['resnet101','resnet152']
+
+    twotwofour_models = ['resnet50','vgg19','vgg16','densenet121','densenet169','densenet201','mobilenet','wideresnet','resnet101','resnet152']
+    twoninenine_models = ['inceptionv3','xception','inceptionresnetv2','ror']
+    threethreeone_models = ['nasnet']
+
+    img_width,img_height = 224,224
+    if model_name in twotwofour_models:
+        img_width,img_height = 224,224
+    elif model_name in twoninenine_models:
+        img_width,img_height = 299,299
+    elif model_name in threethreeone_models:
+        img_width,img_height = 331,331
 
     test_datagen = ImageDataGenerator(
     	rescale = 1./255)

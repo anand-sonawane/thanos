@@ -79,7 +79,7 @@ def create_model(model_name,training_type,num_classes):
 #------------------------------------------------------VGG16-----------------------------------------------------------------------------
 
     elif (model_name.lower() == 'vgg16'):
-            img_width,img_height = 299,299
+            img_width,img_height = 224,224
             if(training_type == 'freeze'):
                 model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()
@@ -311,7 +311,7 @@ def create_model(model_name,training_type,num_classes):
 
 #------------------------------------------------------MobileNet-----------------------------------------------------------------------------
 
-    elif (model_name.lower() == 'densenet201'):
+    elif (model_name.lower() == 'mobilenet'):
             img_width,img_height = 224,224
             if(training_type == 'freeze'):
                 model = applications.mobilenet.MobileNet(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
