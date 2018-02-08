@@ -12,7 +12,7 @@ import os, math
 
 
 """
-    keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet','mobilenet']
+    keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet121','densenet169','densenet201','mobilenet']
     This file will train the above models available in the base keras library.
     The main function in the file is create_model function which will return the model architecture and
     the image_width and image_height in the model.

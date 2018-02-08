@@ -65,7 +65,7 @@ if __name__ == '__main__':
     print_arguments()
 
 
-    keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet','mobilenet']
+    keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet121','densenet169','densenet201','mobilenet']
     keras_contrib_models = ['wideresnet','ror']
     other = ['resnet101','resnet152']
 #	else:
