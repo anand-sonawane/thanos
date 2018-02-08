@@ -40,7 +40,7 @@ def train_model(data_dir_train,data_dir_valid,batch_size,epochs,model_name,train
     print("Number of Classes :",num_classes)
 
     #differenent sources from where the models are being initialized
-    keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet','mobilenet']
+    keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet121','densenet169','densenet201','mobilenet']
     keras_contrib_models = ['wideresnet','ror']
     other = ['resnet101','resnet152']
 
@@ -52,7 +52,7 @@ def train_model(data_dir_train,data_dir_valid,batch_size,epochs,model_name,train
         model_final,img_width,img_height = models_other.create_model(model_name,training_type,num_classes)
 
     #summary of the model built
-    model.summary()
+    model_final.summary()
 
     # Compile the model
     model_final.compile(loss = "categorical_crossentropy", optimizer = optimizers.SGD(lr=0.0001, momentum=0.9), metrics=["accuracy"])

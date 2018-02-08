@@ -27,14 +27,14 @@ def create_model(model_name,training_type,num_classes):
     if (model_name.lower() == 'wideresnet'):
         img_width,img_height = 224,224
         if(training_type == 'freeze'):
-            model = applications.wide_resnet.WideResidualNetwork(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+            model = applications.wide_resnet.WideResidualNetwork(weights = "cifar10", include_top=False, input_shape = (img_width, img_height, 3))
             model.layers.pop()
             for layer in model.layers[:37]:
             	layer.trainable = False
             for layer in model.layers[37:]:
                 layer.trainable = True
         else:
-            model = applications.wide_resnet.WideResidualNetwork(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+            model = applications.wide_resnet.WideResidualNetwork(weights = "cifar10", include_top=False, input_shape = (img_width, img_height, 3))
             model.layers.pop()
             for layer in model.layers:
             	layer.trainable = False
@@ -53,16 +53,16 @@ def create_model(model_name,training_type,num_classes):
         """
 #------------------------------------------------------ResidualOfResidual-----------------------------------------------------------------------------
     elif (model_name.lower() == 'ror'):
-            img_width,img_height = 299,299
+            img_width,img_height = 224,224
             if(training_type == 'freeze'):
-                model = applications.ror.ResidualOfResidual(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model = applications.ror.ResidualOfResidual(weights = "cifar10", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()
                 for layer in model.layers[:37]:
                 	layer.trainable = False
                 for layer in model.layers[37:]:
                     layer.trainable = True
             else:
-                model = applications.ror.ResidualOfResidual(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model = applications.ror.ResidualOfResidual(weights = "cifar10", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()
                 for layer in model.layers:
                 	layer.trainable = False
