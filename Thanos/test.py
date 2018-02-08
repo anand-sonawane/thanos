@@ -57,7 +57,9 @@ def test_model(data_dir_train,data_dir_test,batch_size,model_name,save_loc,resul
     test_generator = test_datagen.flow_from_directory(
     	DATA_TEST,
     	target_size = (img_height, img_width),
-    	class_mode = "categorical")
+    	class_mode = None)
+
+    #class_mode = None is used for testing but remember the data must be inside a sub_directory inside the test main directory
 
     if model_name in keras_models:
         logits = models_keras.test_model(model_name,save_loc,test_generator)
