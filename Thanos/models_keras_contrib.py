@@ -38,6 +38,7 @@ def create_model(model_name,training_type,num_classes):
             model.layers.pop()
             for layer in model.layers:
             	layer.trainable = False
+        """
         top_model = Sequential()
         top_model.add(Flatten(input_shape=model.output_shape[1:]))
         top_model.add(Dense(1024, activation='relu'))
@@ -47,6 +48,8 @@ def create_model(model_name,training_type,num_classes):
         top_model.add(Dense(num_classes, activation='softmax'))
         #Final model
         model_final = Model(inputs = model.input, outputs = top_model(model.output))
+        """
+        model_final = model
         """
         This can change the code to some extent but needs to be verified
         https://flyyufelix.github.io/2016/10/08/fine-tuning-in-keras-part2.html
