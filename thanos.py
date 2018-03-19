@@ -54,7 +54,7 @@ if __name__ == '__main__':
     optional.add_argument('-p', '--pooling', type=str, default='avg', help='Type of pooling to use: avg|max|none')
     optional.add_argument('-do', '--dropout', type=float, default=0.3, help='Dropout rate for FC layers')
     optional.add_argument("-p", '--use_parallel', default=False, action='store_true')
-    optional.add_argument("-a", '--aug', default=False, action='store_true',help = 'Apply Ba0sic Augumentation or not' )
+    optional.add_argument("-a", '--aug', default=False, action='store_true',help = 'Apply Basic Augumentation or not' )
     optional.add_argument("-act", '--activation', default= 'relu' , help = 'Activation Function to be used')
     optional.add_argument('-o', '--optimizer',default = "sgd", help = 'The optimizer to be used')
     optional.add_argument("-g", '--no_of_gpus', default=1,help = 'No of GPUs to be used for training)
