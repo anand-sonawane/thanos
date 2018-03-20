@@ -29,10 +29,16 @@ def create_model(model_name,training_type,num_classes):
         if(training_type == 'freeze'):
             model = applications.resnet50.ResNet50(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
             model.layers.pop()
+            print(len(model.layers))
             for layer in model.layers[:37]:
             	layer.trainable = False
             for layer in model.layers[37:]:
                 layer.trainable = True
+        if(training_type == 'train_all'):
+            model = applications.resnet50.ResNet50(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+            model.layers.pop()
+            for layer in model.layers:
+            	layer.trainable = True
         else:
             model = applications.resnet50.ResNet50(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
             model.layers.pop()
@@ -61,6 +67,11 @@ def create_model(model_name,training_type,num_classes):
             	layer.trainable = False
             for layer in model.layers[37:]:
                 layer.trainable = True
+        elif(training_type == 'train_all'):
+            model = applications.xception.Xception(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+            model.layers.pop()
+            for layer in model.layers:
+            	layer.trainable = True
         else:
             model = applications.xception.Xception(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
             model.layers.pop()
@@ -87,6 +98,11 @@ def create_model(model_name,training_type,num_classes):
                 	layer.trainable = False
                 for layer in model.layers[37:]:
                     layer.trainable = True
+            elif(training_type == 'train_all'):
+                model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = True
             else:
                 model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()
@@ -113,6 +129,11 @@ def create_model(model_name,training_type,num_classes):
                 	layer.trainable = False
                 for layer in model.layers[37:]:
                     layer.trainable = True
+            elif(training_type == 'train_all'):
+                model = applications.vgg19.VGG19(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = True
             else:
                 model = applications.vgg19.VGG19(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()
@@ -139,6 +160,11 @@ def create_model(model_name,training_type,num_classes):
                 	layer.trainable = False
                 for layer in model.layers[37:]:
                     layer.trainable = True
+            elif(training_type == 'train_all'):
+                model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = True
             else:
                 model = applications.vgg16.VGG16(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()
@@ -165,6 +191,11 @@ def create_model(model_name,training_type,num_classes):
                 	layer.trainable = False
                 for layer in model.layers[37:]:
                     layer.trainable = True
+            elif(training_type == 'train_all'):
+                model = applications.inception_v3.InceptionV3(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = True
             else:
                 model = applications.inception_v3.InceptionV3(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()
@@ -191,6 +222,11 @@ def create_model(model_name,training_type,num_classes):
                 	layer.trainable = False
                 for layer in model.layers[37:]:
                     layer.trainable = True
+            elif(training_type == 'train_all'):
+                model = applications.inception_resnet_v2.InceptionResNetV2(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = True
             else:
                 model = applications.inception_resnet_v2.InceptionResNetV2(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()
@@ -217,6 +253,11 @@ def create_model(model_name,training_type,num_classes):
                 	layer.trainable = False
                 for layer in model.layers[37:]:
                     layer.trainable = True
+            elif(training_type == 'train_all'):
+                model = applications.nasnet.NASNetLarge(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = True
             else:
                 model = applications.nasnet.NASNetLarge(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()
@@ -243,6 +284,11 @@ def create_model(model_name,training_type,num_classes):
                 	layer.trainable = False
                 for layer in model.layers[37:]:
                     layer.trainable = True
+            elif(training_type == 'train_all'):
+                model = applications.densenet.DenseNet121(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = True
             else:
                 model = applications.densenet.DenseNet121(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()
@@ -268,6 +314,11 @@ def create_model(model_name,training_type,num_classes):
                 	layer.trainable = False
                 for layer in model.layers[37:]:
                     layer.trainable = True
+            elif(training_type == 'train_all'):
+                model = applications.densenet.DenseNet169(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = True
             else:
                 model = applications.densenet.DenseNet169(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()
@@ -294,6 +345,11 @@ def create_model(model_name,training_type,num_classes):
                 	layer.trainable = False
                 for layer in model.layers[37:]:
                     layer.trainable = True
+            elif(training_type == 'train_all'):
+                model = applications.densenet.DenseNet201(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = True
             else:
                 model = applications.densenet.DenseNet201(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()
@@ -320,6 +376,11 @@ def create_model(model_name,training_type,num_classes):
                 	layer.trainable = False
                 for layer in model.layers[37:]:
                     layer.trainable = True
+            elif(training_type == 'train_all'):
+                model = applications.mobilenet.MobileNet(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
+                model.layers.pop()
+                for layer in model.layers:
+                	layer.trainable = True
             else:
                 model = applications.mobilenet.MobileNet(weights = "imagenet", include_top=False, input_shape = (img_width, img_height, 3))
                 model.layers.pop()

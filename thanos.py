@@ -39,7 +39,7 @@ if __name__ == '__main__':
     optional.add_argument('-dtest', '--data_dir_test', default="../data/testing_data", help = 'Path to Testing Data')
     optional.add_argument('-m', '--model_name', default="resnet50",help = 'Pretrianed model name')
     optional.add_argument('-e', '--epochs', default=100, type=int, help = 'Number of epochs')
-    optional.add_argument('-b', '--batch_size', default=32, type=int , help = 'Batch-size')
+    optional.add_argument('-b', '--batch_size', default=16, type=int , help = 'Batch-size')
     #We will be using 3 Training Types - 1 : Fine tune all network , 2: Freeze some starting layers
     optional.add_argument('-tt', '--training_type',default = "fine_tune",help = 'Fine tune all network: fine_tune , Freeze the starting layers : freeze')
     optional.add_argument('-s', '--save_loc', default="models/" ,help = 'Save location for the trained models')
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     optional.add_argument('-p', '--pooling', type=str, default='avg', help='Type of pooling to use: avg|max|none')
     optional.add_argument('-do', '--dropout', type=float, default=0.3, help='Dropout rate for FC layers')
     optional.add_argument("-p", '--use_parallel', default=False, action='store_true')
-    optional.add_argument("-a", '--aug', default=False, action='store_true',help = 'Apply Ba0sic Augumentation or not' )
+    optional.add_argument("-a", '--aug', default=False, action='store_true',help = 'Apply Basic Augumentation or not' )
     optional.add_argument("-act", '--activation', default= 'relu' , help = 'Activation Function to be used')
     optional.add_argument('-o', '--optimizer',default = "sgd", help = 'The optimizer to be used')
     optional.add_argument("-g", '--no_of_gpus', default=1,help = 'No of GPUs to be used for training)

@@ -1,4 +1,5 @@
 # Import keras Libraries
+from time import time
 from keras import applications
 from keras.preprocessing.image import ImageDataGenerator
 from keras import optimizers
@@ -72,13 +73,15 @@ def train_model(data_dir_train,data_dir_valid,batch_size,epochs,model_name,train
 
     validation_generator = test_datagen.flow_from_directory(
     	DATA_VALID,
+        batch_size = BATCH_SIZE,
     	target_size = (img_height, img_width),
     	class_mode = "categorical")
 
     # Save the model according to the conditions
-    model_save  = save_loc + model_name + ".h5"
-    checkpoint = ModelCheckpoint(model_save, monitor='val_acc', verbose=1, save_best_only=True, save_weights_only=False, mode='auto', period=1)
+    model_save = save_loc + model_name +" weights-{epoch:02d}.hdf5"
+    checkpoint = ModelCheckpoint(model_save, monitor='val_acc', verbose=1, save_best_only=False, save_weights_only=False, period=1)
     early_stopping = EarlyStopping(monitor='val_acc', min_delta=0, patience=15, verbose=1, mode='auto')
+    tensorboard = TensorBoard(log_dir="logs/{}".format(time()))
 
     # ================================================================== #
     # learning rate schedule
@@ -100,7 +103,7 @@ def train_model(data_dir_train,data_dir_valid,batch_size,epochs,model_name,train
     	epochs = EPOCH,
     	validation_data = validation_generator,
     	validation_steps = nb_validation_samples,
-    	callbacks = [checkpoint, early_stopping, change_lr])
+    	callbacks = [checkpoint, early_stopping, change_lr,tensorboard])
 
     # Save the final model on the disk
     model_final.save(model_save)

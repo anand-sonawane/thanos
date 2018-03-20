@@ -1,0 +1,8 @@
+1.add train_all to keras_contrib
+2.add weights to keras_contrib
+3.make keras_contrib compatible without weights for now
+4.learn where to break the models for freeze training type
+5.test the testing scripts
+6.add extra models
+7.give options to manipulate the other hyper-parameters
+8.random crop addition
