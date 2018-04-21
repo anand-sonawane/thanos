@@ -78,13 +78,8 @@ def train_model(data_dir_train,data_dir_valid,batch_size,epochs,model_name,train
     	class_mode = "categorical")
 
     # Save the model according to the conditions
-<<<<<<< HEAD
     model_save = save_loc + model_name +" weights-{epoch:02d}.hdf5"
     checkpoint = ModelCheckpoint(model_save, monitor='val_acc', verbose=1, save_best_only=False, save_weights_only=False, period=1)
-=======
-    model_save  = save_loc + model_name + ".h5"
-    checkpoint = ModelCheckpoint(model_save, monitor='val_acc', verbose=1, save_best_only=False, save_weights_only=False, mode='auto', period=1)
->>>>>>> b15fdff42a7e8a556ce64ded6fbb697b86d702b8
     early_stopping = EarlyStopping(monitor='val_acc', min_delta=0, patience=15, verbose=1, mode='auto')
     tensorboard = TensorBoard(log_dir="logs/{}".format(time()))
 
