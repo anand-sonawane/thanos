@@ -1,13 +1,9 @@
 #load the required libararies
-
 import glob
 import os
 from PIL import Image, ImageOps
 import numpy as np
 import pandas as pd
-from scipy.misc import imresize
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelBinarizer
 
 #load the keras libraries
 
@@ -19,8 +15,7 @@ from keras.callbacks import LearningRateScheduler, EarlyStopping
 from keras.callbacks import ModelCheckpoint
 
 #Import user-defined Libraries
-from Thanos import models_keras
-from Thanos import models_keras_contrib
+from Thanos.models import Models
 
 def test_model(data_dir_train,data_dir_test,batch_size,model_name,save_loc,results_loc):
 
@@ -62,11 +57,15 @@ def test_model(data_dir_train,data_dir_test,batch_size,model_name,save_loc,resul
     #class_mode = None is used for testing but remember the data must be inside a sub_directory inside the test main directory
 
     if model_name in keras_models:
-        logits = models_keras.test_model(model_name,save_loc,test_generator)
+        variable = "abc"
+        #logits = models_keras.test_model(model_name,save_loc,test_generator)
+    """
+    This feature is currently under development
     elif model_name in keras_contrib_models:
         logits = models_keras_contrib.test_model(model_name,save_loc,test_generator)
     else:
         logits = models_other.test_model(model_name,save_loc,test_generator)
+    """
 
     logits_pd = pd.DataFrame(logits)
     save_results = results_loc + model_name + "_results.csv"

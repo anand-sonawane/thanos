@@ -12,8 +12,7 @@ from keras.callbacks import ModelCheckpoint, LearningRateScheduler, TensorBoard,
 import os, math
 
 #Import user-defined Libraries
-from Thanos import models_keras
-from Thanos import models_keras_contrib
+from Thanos.models import Models
 
 """ Code for using fraction of the GPU
 import tensorflow as tf
@@ -42,15 +41,22 @@ def train_model(data_dir_train,data_dir_valid,batch_size,epochs,model_name,train
 
     #differenent sources from where the models are being initialized
     keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet121','densenet169','densenet201','mobilenet']
-    keras_contrib_models = ['wideresnet','ror']
-    other = ['resnet101','resnet152']
+    #keras_contrib_models = ['wideresnet','ror']
+    #other = ['resnet101','resnet152']
+
+    modelsBuilder = Models(model_name,training_type,num_classes)
 
     if model_name in keras_models:
-        model_final,img_width,img_height = models_keras.create_model(model_name,training_type,num_classes)
+        model_final,img_width,img_height = modelsBuilder.createModelBase()
+
+    """
+    This feature is under development
+
     elif model_name in keras_contrib_models:
         model_final,img_width,img_height = models_keras_contrib.create_model(model_name,training_type,num_classes)
     else:
         model_final,img_width,img_height = models_other.create_model(model_name,training_type,num_classes)
+    """
 
     #summary of the model built
     model_final.summary()
@@ -106,8 +112,9 @@ def train_model(data_dir_train,data_dir_valid,batch_size,epochs,model_name,train
     	callbacks = [checkpoint, early_stopping, change_lr,tensorboard])
 
     # Save the final model on the disk
-    model_final.save(model_save)
+    model_final_name = save_loc + model_name +" weights-final.hdf5"
+    model_final.save(model_final_name)
 
-    return_string = "Model saved at "+ model_save
+    return_string = "Model saved at : "+ model_final_name
 
     return return_string

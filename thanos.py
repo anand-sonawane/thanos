@@ -68,9 +68,6 @@ if __name__ == '__main__':
     keras_models= ['xception','vgg16','vgg19','resnet50','inceptionv3','inceptionresnetv2','nasnet','densenet121','densenet169','densenet201','mobilenet']
     keras_contrib_models = ['wideresnet','ror']
     other = ['resnet101','resnet152']
-#	else:
-#        print("Please input the correct model name")
-
 
     """
     Using the argument parser inputs :
